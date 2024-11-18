@@ -32,8 +32,8 @@ public class RegisterController {
         if(numberOfUsers>0){
             bindingResult.rejectValue("username", "username.exists","Username already exists");
         }
-        if (user.getUsername().length() < 3) {
-            bindingResult.rejectValue("username", "error.user", "Username must be at least 5 characters");
+        if (user.getUsername().length() < 4) {
+            bindingResult.rejectValue("username", "error.user", "Username must be at least 4 characters");
         }
         // Validate password
         if(user.getUsername().equals(user.getPassword())){
