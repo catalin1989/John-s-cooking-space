@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - My Online Shop</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .register-container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+        input[type="text"], input[type="password"], input[type="email"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        input[type="submit"] {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #555;
+        }
+        .login-link {
+            margin-top: 15px;
+            display: block;
+        }
+        .login-link a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .login-link a:hover {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+
+<div class="register-container">
+    <h2>Register</h2>
+    <form th:action="@{/register/submit}" th:object="${user}" method="post">
+            <input type="text" id="username" name="username" placeholder="Username" th:field="*{username}" required>
+            <p th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:red"></p>
+            <input type="password" id="password" name="password" placeholder="Password" th:field="*{password}" required>
+            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></p>
+            <input type="email" id="email" name="email" placeholder="Email" th:field="*{email}" required>
+             <input type="submit" value="Register">
+    </form>
+    <div class="login-link">
+        <p>Already have an account? <a th:href="@{/login}">Login here</a></p>
+    </div>
+</div>
+
+</body>
+</html>

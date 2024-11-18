@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Dynamic Title -->
+
+    <title>Welcome to My Online Shop</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+        }
+        nav {
+            margin: 20px;
+            text-align: center;
+        }
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .section {
+            background-color: white;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+        }
+        .login-button {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+        }
+        .login-button a {
+            background-color: #fff;
+            color: #333;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .login-button a:hover {
+            background-color: #555;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Welcome to My Online Shop</h1>
+    <p th:if="${username!='anonymousUser'}">Hello, <span th:text="${username}">User</span>!  </p>
+    <p>We have homemade products and delicious recipes, just for you!</p>
+    <div class="login-button">
+        <!-- Show login button if user is not authenticated -->
+        <a th:if="${username == 'anonymousUser'}" href="/login">Login</a>
+
+        <!-- Show logout and shopping cart buttons if user is authenticated -->
+        <a th:if="${username != 'anonymousUser'}" href="/cart">Cart</a>
+        <a th:if="${username != 'anonymousUser'}" th:href="@{/logout}">Logout</a>
+    </div>
+</header>
+
+<nav>
+    <a href="/home">Home</a>
+    <a th:href="@{/recipes}">Recipes</a>
+    <a th:href="@{/products}">Products</a>
+    <a th:href="@{/contact}">Contact</a>
+</nav>
+
+<div class="container">
+    <div class="section">
+        <h2>About Me</h2>
+        <p>Hello! I'm Catalin, and I love creating homemade products and sharing my favorite recipes. Browse around and enjoy some of my best culinary creations!</p>
+    </div>
+
+    <div class="section">
+        <h2>Featured Recipes</h2>
+        <p>Check out some of my latest and greatest recipes that you can try at home.</p>
+        <ul>
+            <li><a th:href="@{/recipes/1}">Recipe 1</a></li>
+            <li><a th:href="@{/recipes/2}">Recipe 2</a></li>
+            <li><a th:href="@{/recipes/3}">Recipe 3</a></li>
+        </ul>
+    </div>
+
+    <div class="section">
+        <h2>Products for Sale</h2>
+        <p>Explore my homemade products, crafted with love and care. Available for purchase!</p>
+        <ul>
+            <li><a th:href="@{/products/1}">Product 1</a></li>
+            <li><a th:href="@{/products/2}">Product 2</a></li>
+            <li><a th:href="@{/products/3}">Product 3</a></li>
+        </ul>
+    </div>
+</div>
+
+<footer>
+    <p>Contact: catalin@example.com | Follow me on social media!</p>
+</footer>
+
+</body>
+</html>
